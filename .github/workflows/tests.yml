@@ -14,11 +14,18 @@ on:
       - '.run/**'
 
 jobs:
+  test-dbt-1-11:
+    uses: ./.github/workflows/tests-dbt-version.yml
+    with:
+      dbt-version: "1.11"
+      dbt-duckdb-version: "1.10"
+      python-versions: '["3.10", "3.11", "3.12"]'
   test-dbt-1-10:
     uses: ./.github/workflows/tests-dbt-version.yml
     with:
       dbt-version: "1.10"
       dbt-duckdb-version: "1.9"
+    needs: test-dbt-1-11
   test-dbt-1-9:
     uses: ./.github/workflows/tests-dbt-version.yml
     with:

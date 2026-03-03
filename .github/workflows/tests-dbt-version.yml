@@ -9,6 +9,10 @@ on:
       dbt-duckdb-version:
         required: true
         type: string
+      python-versions:
+        required: false
+        type: string
+        default: '["3.9", "3.10", "3.11", "3.12"]'
 
 jobs:
   test-dbt-version:
@@ -16,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.9", "3.10", "3.11", "3.12" ]
+        python-version: ${{ fromJson(inputs.python-versions) }}
     steps:
       - uses: actions/checkout@v6
       - name: Set up Python ${{ matrix.python-version }}
