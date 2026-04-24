@@ -87,8 +87,8 @@ class DBTDocsView(BaseView):
     default_view = "dbt_docs_index"
 
     def __init__(self, project_paths=None):
-        super().__init__()
         self._static_project_paths = project_paths
+        super().__init__()
 
     @property
     def projects(self) -> Dict[str, Path]:
